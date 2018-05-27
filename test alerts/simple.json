@@ -1,0 +1,43 @@
+{
+  "receiver": "telegram",
+  "status": "resolved",
+  "externalURL": "http://promehteus.local",
+  "version": "4",
+  "groupKey": "1",
+  "alerts": [
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "node_down",
+        "env": "prod",
+        "instance": "localhost:10000",
+        "job": "node",
+        "monitor": "prometheus",
+        "severity": "critical"
+      },
+      "annotations": {
+        "description": "localhost:10000 node has been down for more than 5 minutes.",
+        "summary": "Instance localhost:10000 down"
+      },
+      "startsAt": "2002-10-02T10:00:00-05:00",
+      "endsAt": "2002-10-02T10:00:00-05:00",
+      "generatorURL": "http://promehteus.local/"
+    }
+  ],
+  "groupLabels": {
+    "alertname": "node_down",
+    "instance": "localhost:10000"
+  },
+  "commonLabels": {
+    "alertname": "node_down",
+    "env": "test",
+    "instance": "localhost:10000",
+    "job": "node",
+    "monitor": "prometheus",
+    "severity": "critical"
+  },
+  "commonAnnotations": {
+    "description": "localhost:10000 node has been down for more than 5 minutes.",
+    "summary": "Instance localhost:10000 down"
+  }
+}

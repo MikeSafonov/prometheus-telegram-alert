@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration debug="false" status="INFO">
+    <Properties>
+        <Property name="log-path">logs-prometheus-telegram-alert</Property>
+    </Properties>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+        <RollingFile name="AppLogFile" fileName="${log-path}/app.log"
+                     filePattern="${log-path}/AppLogs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+            <PatternLayout>
+                <Pattern>%d{DEFAULT} [%-5p] %c - %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="50 MB"/>
+            </Policies>
+        </RollingFile>
+        <RollingFile name="ErrorLogFile" fileName="${log-path}/Error.log"
+                     filePattern="${log-path}/Error/$${date:yyyy-MM}/Error-%d{MM-dd-yyyy}-%i.log.gz">
+            <PatternLayout>
+                <Pattern>%d{DEFAULT} [%-5p] %c - %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="50 MB"/>
+            </Policies>
+        </RollingFile>
+        <RollingFile name="DebugLogFile" fileName="${log-path}/Debug.log"
+                     filePattern="${log-path}/Debug/$${date:yyyy-MM}/Debug-%d{MM-dd-yyyy}-%i.log.gz">
+            <PatternLayout>
+                <Pattern>%d{DEFAULT} [%-5p] %c - %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="50 MB"/>
+            </Policies>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Root level="INFO" additivity="false">
+            <AppenderRef ref="AppLogFile" level="INFO"/>
+            <AppenderRef ref="Console"/>
+        </Root>
+        <Logger name="com.github.mikesafonov" level="DEBUG" additivity="false">
+            <AppenderRef ref="DebugLogFile" level="DEBUG"/>
+            <AppenderRef ref="AppLogFile" level="INFO"/>
+            <AppenderRef ref="ErrorLogFile" level="ERROR"/>
+            <AppenderRef ref="Console"/>
+        </Logger>
+    </Loggers>
+</Configuration>
