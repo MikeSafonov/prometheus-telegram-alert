@@ -22,30 +22,18 @@ public class TelegramApiService {
     private final String targetUrl;
 
 
-    public TelegramApiService(TelegramProperties telegramProperties) {
+    public TelegramApiService(TelegramProperties telegramProperties, RestTemplate restTemplate) {
         this.telegramProperties = telegramProperties;
-        this.restTemplate = createRestTemplate(telegramProperties);
+        this.restTemplate = restTemplate;
         targetUrl = format("https://api.telegram.org/bot%s/sendmessage?chat_id={chat_id}&text={text}&parse_mode={parse_mode}" +
                 "&disable_notification={disable_notification}", telegramProperties.getAuthToken());
     }
 
 
-    public void sendMessage(String message){
+    public void sendMessage(String message) {
         restTemplate.getForObject(targetUrl, Void.class, params(message));
     }
 
-    private RestTemplate createRestTemplate(TelegramProperties telegramProperties) {
-        if (telegramProperties.getProxy() != null && telegramProperties.getProxy().isEnable()) {
-            SimpleClientHttpRequestFactory factory = new SimpleClientHttpRequestFactory();
-            InetSocketAddress address = new InetSocketAddress(telegramProperties.getProxy().getHost(),
-                    telegramProperties.getProxy().getPort());
-            Proxy proxy = new Proxy(Proxy.Type.HTTP, address);
-            factory.setProxy(proxy);
-            return new RestTemplate(factory);
-        } else {
-            return new RestTemplate();
-        }
-    }
 
     private Map<String, String> params(String message) {
         Map<String, String> stringMap = new HashMap<>();

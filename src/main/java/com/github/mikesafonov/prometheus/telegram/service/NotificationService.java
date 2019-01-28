@@ -4,6 +4,7 @@ import com.github.mikesafonov.prometheus.telegram.dto.AlertManagerNotification;
 import com.github.mikesafonov.prometheus.telegram.service.message.MessageConverter;
 import com.github.mikesafonov.prometheus.telegram.service.telegram.TelegramApiService;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,6 +19,7 @@ public class NotificationService {
         this.messageConverter = messageConverter;
     }
 
+    @Async
     public void sendNotification(AlertManagerNotification notification) {
         String message = messageConverter.convert(notification);
         log.debug(String.format("Telegram message:%s", message));

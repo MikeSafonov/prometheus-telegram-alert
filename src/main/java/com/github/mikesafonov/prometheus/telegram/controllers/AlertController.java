@@ -20,7 +20,7 @@ public class AlertController {
 
     @PostMapping("/alert")
     public void alert(@RequestBody AlertManagerNotification managerNotification) {
-        log.debug(managerNotification);
+        log.debug("Notification: {}",managerNotification);
         notificationService.sendNotification(managerNotification);
     }
 }
