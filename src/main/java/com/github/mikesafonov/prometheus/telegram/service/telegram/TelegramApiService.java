@@ -13,6 +13,11 @@ import java.util.Map;
 
 import static java.lang.String.format;
 
+/**
+ * Telegram API implementation
+ *
+ * @author MikeSafonov
+ */
 @Service
 @Log4j2
 public class TelegramApiService {

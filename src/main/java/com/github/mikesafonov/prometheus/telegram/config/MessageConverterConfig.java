@@ -11,6 +11,9 @@ import org.springframework.web.client.RestTemplate;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
 
+/**
+ * @author MikeSafonov
+ */
 @Configuration
 public class MessageConverterConfig {
 

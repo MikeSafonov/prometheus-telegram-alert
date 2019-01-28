@@ -3,6 +3,11 @@ package com.github.mikesafonov.prometheus.telegram.service.message;
 import com.github.mikesafonov.prometheus.telegram.dto.AlertManagerNotification;
 import com.github.mikesafonov.prometheus.telegram.service.telegram.TelegramMessageFormatter;
 
+/**
+ * Base implementation of {@link MessageConverter}
+ *
+ * @author MikeSafonov
+ */
 public class SimpleMessageConverter implements MessageConverter {
     @Override
     public String convert(AlertManagerNotification notification) {
