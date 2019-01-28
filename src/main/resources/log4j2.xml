@@ -43,7 +43,7 @@
             <AppenderRef ref="AppLogFile" level="INFO"/>
             <AppenderRef ref="Console"/>
         </Root>
-        <Logger name="com.github.mikesafonov" level="DEBUG" additivity="false">
+        <Logger name="com.github.mikesafonov.prometheus" level="DEBUG" additivity="false">
             <AppenderRef ref="DebugLogFile" level="DEBUG"/>
             <AppenderRef ref="AppLogFile" level="INFO"/>
             <AppenderRef ref="ErrorLogFile" level="ERROR"/>

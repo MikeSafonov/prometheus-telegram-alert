@@ -33,9 +33,11 @@ def lombokVersion = '1.18.4'
 dependencies {
     implementation  'org.springframework.boot:spring-boot-starter-web'
     implementation  'org.springframework.boot:spring-boot-starter-log4j2'
+    compileOnly 'org.springframework.boot:spring-boot-configuration-processor'
+    
     implementation  'org.apache.logging.log4j:log4j-web'
 
-    compileOnly 'org.springframework.boot:spring-boot-configuration-processor'
+    implementation 'com.vdurmont:emoji-java:4.0.0'
     
     compileOnly "org.projectlombok:lombok:${lombokVersion}"
     annotationProcessor "org.projectlombok:lombok:${lombokVersion}"

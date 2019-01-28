@@ -1,6 +1,9 @@
-package com.github.mikesafonov.prometheus.telegram.service.telegram;
+package com.github.mikesafonov.prometheus.telegram.utils;
 
-public class TelegramMessageFormatter {
+import lombok.experimental.UtilityClass;
+
+@UtilityClass
+public class TelegramMarkdownFormatter {
 
     public static String makeBold(String target) {
         return "*" + target + "*";

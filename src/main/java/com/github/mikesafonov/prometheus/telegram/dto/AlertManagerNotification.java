@@ -6,8 +6,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * @author MikeSafonov
+ */
 @Data
-public class AlertManagerNotification {
+public class AlertManagerNotification extends MapValue {
 
     private String version;
     private String receiver;
@@ -19,16 +22,19 @@ public class AlertManagerNotification {
     private List<Alert> alerts;
 
     public Optional<String> getAlertName() {
-        if (commonLabels != null) {
-            return Optional.ofNullable(commonLabels.get("alertname"));
-        }
-        return Optional.empty();
+        return getValue(commonLabels, "alertname");
     }
 
     public Optional<String> getDescription() {
-        if (commonAnnotations != null) {
-            return Optional.ofNullable(commonAnnotations.get("description"));
-        }
-        return Optional.empty();
+        return getValue(commonAnnotations, "description");
     }
+
+    public Optional<String> getGroupInstance() {
+        return getValue(groupLabels, "instance");
+    }
+
+    public Optional<String> getSeverity() {
+        return getValue(commonLabels, "severity");
+    }
+
 }

@@ -1,6 +1,8 @@
 package com.github.mikesafonov.prometheus.telegram.service;
 
+import com.github.mikesafonov.prometheus.telegram.dto.Alert;
 import com.github.mikesafonov.prometheus.telegram.dto.AlertManagerNotification;
+import com.github.mikesafonov.prometheus.telegram.dto.enums.AlertStatus;
 import com.github.mikesafonov.prometheus.telegram.service.message.MessageConverter;
 import com.github.mikesafonov.prometheus.telegram.service.telegram.TelegramApiService;
 import lombok.RequiredArgsConstructor;
@@ -26,8 +28,13 @@ public class NotificationService {
      */
     @Async
     public void sendNotification(AlertManagerNotification notification) {
-        String message = messageConverter.convert(notification);
-        log.debug(String.format("Telegram message:%s", message));
-        telegramApiService.sendMessage(message);
+        notification.getAlerts().forEach(alert -> notifyAlert(notification, alert));
+    }
+
+    private void notifyAlert(AlertManagerNotification notification, Alert alert) {
+        messageConverter.convert(notification, alert).ifPresent(message -> {
+            log.debug(String.format("Telegram message:%s", message));
+            telegramApiService.sendMessage(message);
+        });
     }
 }
