@@ -1,12 +1,24 @@
 plugins {
-    id 'org.springframework.boot' version '1.5.10.RELEASE'
+    id 'org.springframework.boot' version '2.1.2.RELEASE'
     id 'java'
 }
+
+apply plugin: 'io.spring.dependency-management'
 
 group 'com.github.mikesafonov'
 version '1.0.0'
 
 sourceCompatibility = 1.8
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+wrapper {
+    distributionType = Wrapper.DistributionType.ALL
+    gradleVersion = '5.1.1'
+}
+
+bootJar{
+    mainClassName = 'com.github.mikesafonov.prometheus.telegram.Application'
+}
 
 repositories {
     mavenCentral()
@@ -16,14 +28,17 @@ configurations {
     compile.exclude module: 'spring-boot-starter-logging'
 }
 
+def lombokVersion = '1.18.4'
 
 dependencies {
-    compile 'org.springframework.boot:spring-boot-starter-web'
-    compile 'org.springframework.boot:spring-boot-starter-log4j2'
-    compile 'org.apache.logging.log4j:log4j-web'
+    implementation  'org.springframework.boot:spring-boot-starter-web'
+    implementation  'org.springframework.boot:spring-boot-starter-log4j2'
+    implementation  'org.apache.logging.log4j:log4j-web'
 
-    compileOnly('org.springframework.boot:spring-boot-configuration-processor')
-    compileOnly('org.projectlombok:lombok')
+    compileOnly 'org.springframework.boot:spring-boot-configuration-processor'
+    
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 
-    testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
