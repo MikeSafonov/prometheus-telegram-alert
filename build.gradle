@@ -28,7 +28,7 @@ configurations {
     compile.exclude module: 'spring-boot-starter-logging'
 }
 
-def lombokVersion = '1.18.4'
+def lombokVersion = '1.18.6'
 
 dependencies {
     implementation  'org.springframework.boot:spring-boot-starter-web'
