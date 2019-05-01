@@ -4,7 +4,7 @@ import com.github.mikesafonov.prometheus.telegram.dto.enums.AlertLevel;
 import com.github.mikesafonov.prometheus.telegram.dto.enums.AlertStatus;
 import lombok.Data;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.Map;
 import java.util.Optional;
 
@@ -16,8 +16,8 @@ public class Alert extends MapValue {
 
     private Map<String, String> labels;
     private Map<String, String> annotations;
-    private LocalDateTime startsAt;
-    private LocalDateTime endsAt;
+    private ZonedDateTime startsAt;
+    private ZonedDateTime endsAt;
     private String generatorURL;
     private AlertStatus status;
 
