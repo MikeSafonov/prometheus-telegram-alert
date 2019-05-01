@@ -14,6 +14,6 @@ public class TelegramProxyProperties {
 
     private boolean enable;
     private String host;
-    private int port;
+    private Integer port;
 
 }

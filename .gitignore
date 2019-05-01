@@ -3,4 +3,4 @@ build/
 out/
 *.iml
 .idea/
-logs-alert-manager-telegram/
+*.log
