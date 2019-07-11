@@ -1,9 +1,18 @@
+buildscript {
+    configurations.maybeCreate("pitest")
+    dependencies {
+        classpath 'info.solidsoft.gradle.pitest:gradle-pitest-plugin:1.4.0'
+        pitest 'org.pitest:pitest-junit5-plugin:0.9'
+    }
+}
+
 plugins {
     id 'org.springframework.boot' version '2.1.6.RELEASE'
     id 'java'
     id "jacoco"
 }
 
+apply plugin: "info.solidsoft.pitest"
 apply plugin: 'io.spring.dependency-management'
 
 group 'com.github.mikesafonov'
@@ -51,11 +60,16 @@ dependencies {
     compileOnly "org.projectlombok:lombok"
     annotationProcessor "org.projectlombok:lombok"
 
-    testCompile 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.5.0'
 }
 
 jacoco {
     toolVersion = "0.8.3"
+}
+
+test {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport, pitest 
 }
 
 jacocoTestReport {
@@ -63,4 +77,15 @@ jacocoTestReport {
         xml.enabled true
         csv.enabled false
     }
+}
+
+pitest {
+    testPlugin = "junit5"
+    targetClasses = ['com.github.mikesafonov.prometheus.telegram.*']
+    threads = 4
+    outputFormats = ['HTML', 'XML']
+    enableDefaultIncrementalAnalysis = true
+    timestampedReports = false
+    historyInputLocation = ".pitest/pitHistory.txt"
+    historyOutputLocation = ".pitest/pitHistory.txt"
 }
