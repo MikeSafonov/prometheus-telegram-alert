@@ -60,7 +60,9 @@ dependencies {
     compileOnly "org.projectlombok:lombok"
     annotationProcessor "org.projectlombok:lombok"
 
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.5.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.5.0'
+    testImplementation  'org.junit.jupiter:junit-jupiter-api:5.5.0'
+    testRuntimeOnly  'org.junit.jupiter:junit-jupiter-engine:5.5.0'
 }
 
 jacoco {
@@ -68,8 +70,9 @@ jacoco {
 }
 
 test {
+    ignoreFailures = true
     useJUnitPlatform()
-    finalizedBy jacocoTestReport, pitest 
+    finalizedBy jacocoTestReport, "pitest" 
 }
 
 jacocoTestReport {
