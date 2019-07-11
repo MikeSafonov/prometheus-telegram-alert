@@ -17,8 +17,18 @@ wrapper {
     gradleVersion = '5.5.1'
 }
 
-bootJar{
+bootJar {
     mainClassName = 'com.github.mikesafonov.prometheus.telegram.Application'
+    archiveFileName = "prometheus-telegram-alert.jar"
+    launchScript()
+}
+
+springBoot {
+    buildInfo {
+        properties {
+            additional = ["version": project.version]
+        }
+    }
 }
 
 repositories {
@@ -30,14 +40,14 @@ configurations {
 }
 
 dependencies {
-    implementation  'org.springframework.boot:spring-boot-starter-web'
-    implementation  'org.springframework.boot:spring-boot-starter-log4j2'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-log4j2'
     compileOnly 'org.springframework.boot:spring-boot-configuration-processor'
-    
-    implementation  'org.apache.logging.log4j:log4j-web'
+
+    implementation 'org.apache.logging.log4j:log4j-web'
 
     implementation 'com.vdurmont:emoji-java:4.0.0'
-    
+
     compileOnly "org.projectlombok:lombok"
     annotationProcessor "org.projectlombok:lombok"
 
@@ -50,7 +60,7 @@ jacoco {
 
 jacocoTestReport {
     reports {
-        xml.enabled  true
-        csv.enabled  false
+        xml.enabled true
+        csv.enabled false
     }
 }
