@@ -4,3 +4,6 @@ out/
 *.iml
 .idea/
 *.log
+logs-prometheus-telegram-alert/
+*-dev.properties
+.pitest/
