@@ -60,7 +60,7 @@ dependencies {
     compileOnly "org.projectlombok:lombok"
     annotationProcessor "org.projectlombok:lombok"
 
-    def junitBomVersion = '5.5.0'
+    def junitBomVersion = '5.5.1'
 
     testImplementation(platform("org.junit:junit-bom:$junitBomVersion"))
     
