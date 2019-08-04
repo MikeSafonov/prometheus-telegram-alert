@@ -8,4 +8,5 @@ comment:
 
 ignore:
   - "src/main/java/com/github/mikesafonov/prometheus/telegram/config/*"
+  - "src/main/java/com/github/mikesafonov/prometheus/telegram/controllers/*"
   - "src/main/resources/*"
