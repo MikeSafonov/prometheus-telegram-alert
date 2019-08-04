@@ -2,12 +2,9 @@ package com.github.mikesafonov.prometheus.telegram.service.telegram;
 
 import com.github.mikesafonov.prometheus.telegram.config.TelegramProperties;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.net.InetSocketAddress;
-import java.net.Proxy;
 import java.util.HashMap;
 import java.util.Map;
 
