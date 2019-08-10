@@ -44,6 +44,20 @@ repositories {
     mavenCentral()
 }
 
+dependencyManagement {
+    dependencies {
+        dependencySet(group:'org.junit.jupiter', version: '5.5.1') {
+            entry 'junit-jupiter-api'
+            entry 'junit-jupiter-engine'
+            entry 'junit-jupiter-params'
+        }
+        dependencySet(group:'org.junit.platform', version: '1.5.0') {
+            entry 'junit-platform-engine'
+            entry 'junit-platform-commons'
+        }
+    }
+}
+
 configurations {
     compile.exclude module: 'spring-boot-starter-logging'
 }
@@ -60,11 +74,8 @@ dependencies {
     compileOnly "org.projectlombok:lombok"
     annotationProcessor "org.projectlombok:lombok"
 
-    def junitBomVersion = '5.5.1'
-
-    testImplementation(platform("org.junit:junit-bom:$junitBomVersion"))
-    
-    testImplementation("org.junit.jupiter:junit-jupiter")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.5.1")
+    testImplementation("org.mockito:mockito-core")
 }
 
 jacoco {
