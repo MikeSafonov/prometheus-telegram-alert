@@ -1,0 +1,4 @@
+prometheus-telegram-alert:
+  build: .
+  volumes:
+    - ./config:/app/config
