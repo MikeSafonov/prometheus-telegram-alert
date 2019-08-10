@@ -6,9 +6,9 @@ import java.util.Optional;
 /**
  * @author MikeSafonov
  */
-public abstract class MapValue {
+interface MapValue {
 
-    protected Optional<String> getValue(Map<String, String> map, String key) {
+    default Optional<String> getValue(Map<String, String> map, String key) {
         if (map != null) {
             return Optional.ofNullable(map.get(key));
         }

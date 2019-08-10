@@ -12,7 +12,7 @@ import java.util.Optional;
  * @author MikeSafonov
  */
 @Data
-public class Alert extends MapValue {
+public class Alert implements MapValue {
 
     private Map<String, String> labels;
     private Map<String, String> annotations;

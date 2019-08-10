@@ -2,6 +2,7 @@ package com.github.mikesafonov.prometheus.telegram.dto;
 
 import lombok.Data;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -10,7 +11,7 @@ import java.util.Optional;
  * @author MikeSafonov
  */
 @Data
-public class AlertManagerNotification extends MapValue {
+public class AlertManagerNotification implements MapValue {
 
     private String version;
     private String receiver;
@@ -20,6 +21,13 @@ public class AlertManagerNotification extends MapValue {
     private Map<String, String> commonAnnotations;
     private String externalURL;
     private List<Alert> alerts;
+
+    public List<Alert> getAlerts() {
+        if(alerts == null){
+            return Collections.emptyList();
+        }
+        return alerts;
+    }
 
     public Optional<String> getAlertName() {
         return getValue(commonLabels, "alertname");

@@ -25,26 +25,25 @@ public class SimpleMessageConverter implements MessageConverter {
      * @return notification message
      */
     @Override
-    public Optional<String> convert(AlertManagerNotification notification, Alert alert) {
+    public String convert(AlertManagerNotification notification, Alert alert) {
 
         Optional<AlertLevel> level = alert.getLevel();
         String emojiByLevel = emojiByLevel(level.orElse(AlertLevel.WARNING));
 
+        String message;
+        String description;
         if (alert.getStatus() == AlertStatus.firing) {
             String title = alert.getTitle().orElse("Title");
-            String description = alert.getDescription().orElse("Description");
-            String message = String.format(emojiByLevel + " " + title, "UTF-8");
-            message = addParagraph(message);
-            message = addParagraph(message + description);
-            return Optional.of(message);
+            description = alert.getDescription().orElse("Description");
+            message = String.format(emojiByLevel + " " + title, "UTF-8");
         } else {
             String title = alert.getResolvedTitle().orElse("Title");
-            String description = alert.getResolvedDescription().orElse("Description");
-            String message = String.format(emojiByLevel + " " + EmojiManager.getForAlias("white_check_mark").getUnicode() + title, "UTF-8");
-            message = addParagraph(message);
-            message = addParagraph(message + description);
-            return Optional.of(message);
+            description = alert.getResolvedDescription().orElse("Description");
+            message = String.format(emojiByLevel + " " + EmojiManager.getForAlias("white_check_mark").getUnicode() + title, "UTF-8");
         }
+        message = addParagraph(message);
+        message = addParagraph(message + description);
+        return message;
     }
 
     private String emojiByLevel(AlertLevel alertLevel) {

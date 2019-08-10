@@ -3,8 +3,6 @@ package com.github.mikesafonov.prometheus.telegram.service.message;
 import com.github.mikesafonov.prometheus.telegram.dto.Alert;
 import com.github.mikesafonov.prometheus.telegram.dto.AlertManagerNotification;
 
-import java.util.Optional;
-
 
 /**
  * Converts {@link AlertManagerNotification} to String message
@@ -18,7 +16,7 @@ public interface MessageConverter {
      *
      * @param notification base prometheus notification
      * @param alert        prometheus alert
-     * @return markdown based telegram message or empty if alert should silenced
+     * @return markdown based telegram message
      */
-    Optional<String> convert(AlertManagerNotification notification, Alert alert);
+    String convert(AlertManagerNotification notification, Alert alert);
 }
