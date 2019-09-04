@@ -1,5 +1,6 @@
 package com.github.mikesafonov.prometheus.telegram.config;
 
+import com.github.mikesafonov.prometheus.telegram.service.message.EmojiService;
 import com.github.mikesafonov.prometheus.telegram.service.message.MessageConverter;
 import com.github.mikesafonov.prometheus.telegram.service.message.SimpleMessageConverter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -19,8 +20,8 @@ public class MessageConverterConfig {
 
     @Bean
     @ConditionalOnMissingBean(MessageConverter.class)
-    public MessageConverter simpleMessageConverter() {
-        return new SimpleMessageConverter();
+    public MessageConverter simpleMessageConverter(EmojiService emojiService) {
+        return new SimpleMessageConverter(emojiService);
     }
 
     @Bean

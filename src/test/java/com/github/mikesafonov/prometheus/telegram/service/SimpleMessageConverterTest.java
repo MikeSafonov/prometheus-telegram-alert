@@ -4,6 +4,7 @@ import com.github.mikesafonov.prometheus.alerts.starter.dto.Alert;
 import com.github.mikesafonov.prometheus.alerts.starter.dto.AlertManagerNotification;
 import com.github.mikesafonov.prometheus.alerts.starter.dto.enums.AlertLevel;
 import com.github.mikesafonov.prometheus.alerts.starter.dto.enums.AlertStatus;
+import com.github.mikesafonov.prometheus.telegram.service.message.EmojiService;
 import com.github.mikesafonov.prometheus.telegram.service.message.SimpleMessageConverter;
 import com.vdurmont.emoji.EmojiManager;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,7 +25,7 @@ class SimpleMessageConverterTest {
 
     @BeforeEach
     void setUp() {
-        simpleMessageConverter = new SimpleMessageConverter();
+        simpleMessageConverter = new SimpleMessageConverter(new EmojiService());
     }
 
     @ParameterizedTest

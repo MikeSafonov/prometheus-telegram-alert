@@ -5,6 +5,7 @@ import com.github.mikesafonov.prometheus.alerts.starter.dto.AlertManagerNotifica
 import com.github.mikesafonov.prometheus.alerts.starter.dto.enums.AlertLevel;
 import com.github.mikesafonov.prometheus.alerts.starter.dto.enums.AlertStatus;
 import com.vdurmont.emoji.EmojiManager;
+import lombok.RequiredArgsConstructor;
 
 import java.util.Optional;
 
@@ -15,7 +16,9 @@ import static com.github.mikesafonov.prometheus.telegram.utils.TelegramMarkdownF
  *
  * @author MikeSafonov
  */
+@RequiredArgsConstructor
 public class SimpleMessageConverter implements MessageConverter {
+    private final EmojiService emojiService;
 
     /**
      * Build notification message from alerts annotations (title, description, resolved_title, resolved_description)
@@ -28,7 +31,7 @@ public class SimpleMessageConverter implements MessageConverter {
     public String convert(AlertManagerNotification notification, Alert alert) {
 
         Optional<AlertLevel> level = alert.getLevel();
-        String emojiByLevel = emojiByLevel(level.orElse(AlertLevel.WARNING));
+        String emojiByLevel = emojiService.emojiByLevel(level.orElse(AlertLevel.WARNING));
 
         String message;
         String description;
@@ -45,22 +48,4 @@ public class SimpleMessageConverter implements MessageConverter {
         message = addParagraph(message + description);
         return message;
     }
-
-    private String emojiByLevel(AlertLevel alertLevel) {
-        switch (alertLevel) {
-            case INFO: {
-                return EmojiManager.getForAlias("information_source").getUnicode();
-            }
-            case CRITICAL: {
-                return EmojiManager.getForAlias("fire").getUnicode();
-            }
-            case WARNING: {
-                return EmojiManager.getForAlias("warning").getUnicode();
-            }
-            default: {
-                return EmojiManager.getForAlias("warning").getUnicode();
-            }
-        }
-    }
-
 }
