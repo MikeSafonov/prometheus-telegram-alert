@@ -98,7 +98,7 @@ jacocoTestReport {
 pitest {
     testPlugin = "junit5"
     targetClasses = ['com.github.mikesafonov.prometheus.telegram.dto.*', 'com.github.mikesafonov.prometheus.telegram.service.*']
-    excludedClasses = ['com.github.mikesafonov.prometheus.telegra.config.*', 'com.github.mikesafonov.prometheus.telegra.controllers.*']
+    excludedClasses = ['com.github.mikesafonov.prometheus.telegram.config.*', 'com.github.mikesafonov.prometheus.telegram.controllers.*']
     threads = 4
     outputFormats = ['HTML', 'XML']
     enableDefaultIncrementalAnalysis = true
