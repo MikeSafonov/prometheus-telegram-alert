@@ -83,7 +83,6 @@ jacoco {
 }
 
 test {
-    ignoreFailures = true
     useJUnitPlatform()
     finalizedBy jacocoTestReport, "pitest" 
 }
