@@ -53,7 +53,7 @@ The following properties can be configured in **application.properties**:
 | server.port | application port (default `8080`) |
 | prometheus.telegram.auth-token | telegram bot auth token |
 | prometheus.telegram.chat-id | telegram chat id |
-| prometheus.telegram.proxy.enable | is use proxy (default `false` |
+| prometheus.telegram.proxy.enable | is use proxy (default `false`) |
 | prometheus.telegram.proxy.host | proxy host |
 | prometheus.telegram.proxy.port | proxy port |
 
