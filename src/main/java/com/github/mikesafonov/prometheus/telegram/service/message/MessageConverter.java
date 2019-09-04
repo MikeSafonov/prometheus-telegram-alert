@@ -1,8 +1,8 @@
 package com.github.mikesafonov.prometheus.telegram.service.message;
 
-import com.github.mikesafonov.prometheus.telegram.dto.Alert;
-import com.github.mikesafonov.prometheus.telegram.dto.AlertManagerNotification;
 
+import com.github.mikesafonov.prometheus.alerts.starter.dto.Alert;
+import com.github.mikesafonov.prometheus.alerts.starter.dto.AlertManagerNotification;
 
 /**
  * Converts {@link AlertManagerNotification} to String message

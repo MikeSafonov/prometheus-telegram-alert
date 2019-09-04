@@ -12,7 +12,7 @@ import java.util.Map;
 import static java.lang.String.format;
 import static org.mockito.Mockito.*;
 
-public class TelegramApiServiceTest {
+class TelegramApiServiceTest {
     private TelegramProperties telegramProperties;
     private RestTemplate restTemplate;
     private TelegramApiService telegramApiService;

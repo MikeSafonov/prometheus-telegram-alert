@@ -1,7 +1,8 @@
 package com.github.mikesafonov.prometheus.telegram.service;
 
-import com.github.mikesafonov.prometheus.telegram.dto.Alert;
-import com.github.mikesafonov.prometheus.telegram.dto.AlertManagerNotification;
+import com.github.mikesafonov.prometheus.alerts.starter.NotificationService;
+import com.github.mikesafonov.prometheus.alerts.starter.dto.Alert;
+import com.github.mikesafonov.prometheus.alerts.starter.dto.AlertManagerNotification;
 import com.github.mikesafonov.prometheus.telegram.service.message.MessageConverter;
 import com.github.mikesafonov.prometheus.telegram.service.telegram.TelegramApiService;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Service;
 @Service
 @Log4j2
 @RequiredArgsConstructor
-public class NotificationService {
+public class TelegramNotificationService implements NotificationService {
 
     private final TelegramApiService telegramApiService;
     private final MessageConverter messageConverter;
@@ -26,7 +27,8 @@ public class NotificationService {
      * @param notification alert
      */
     @Async
-    public void sendNotification(AlertManagerNotification notification) {
+    @Override
+    public void onNotification(AlertManagerNotification notification) {
         notification.getAlerts().forEach(alert -> notifyAlert(notification, alert));
     }
 
@@ -35,4 +37,5 @@ public class NotificationService {
         log.debug(String.format("Telegram message:%s", message));
         telegramApiService.sendMessage(message);
     }
+
 }
