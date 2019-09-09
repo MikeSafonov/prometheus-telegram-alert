@@ -51,7 +51,7 @@ dependencyManagement {
             entry 'junit-jupiter-engine'
             entry 'junit-jupiter-params'
         }
-        dependencySet(group:'org.junit.platform', version: '1.5.1') {
+        dependencySet(group:'org.junit.platform', version: '1.5.2') {
             entry 'junit-platform-engine'
             entry 'junit-platform-commons'
         }
