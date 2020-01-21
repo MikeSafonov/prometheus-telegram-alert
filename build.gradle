@@ -46,7 +46,7 @@ repositories {
 
 dependencyManagement {
     dependencies {
-        dependencySet(group:'org.junit.jupiter', version: '5.5.2') {
+        dependencySet(group:'org.junit.jupiter', version: '5.6.0') {
             entry 'junit-jupiter-api'
             entry 'junit-jupiter-engine'
             entry 'junit-jupiter-params'
