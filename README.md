@@ -95,6 +95,18 @@ receivers:
 
 You can create your own message format by implementing **MessageConverter.java**.
 
+## Holding secrets with [HashiCorp Vault](https://www.vaultproject.io/)
+
+Integration with `Vault` was made using [spring-cloud-vault](https://cloud.spring.io/spring-cloud-vault/reference/html/).
+
+By default `prometheus-telegram-alert` integration with `Vault` disabled. 
+
+To enable integration with `Vault` pass following arguments to `prometheus-telegram-alert` run command:
+
+    java -jar prometheus-telegram-alert.jar --spring.cloud.vault.enabled=true --spring.cloud.vault.uri=<your vault uri> 
+    --spring.cloud.vault.token=<your vault token> --spring.cloud.vault.kv.application-name=<vault application name>
+ 
+ 
 ## Contributing
 
 Feel free to contribute. 
