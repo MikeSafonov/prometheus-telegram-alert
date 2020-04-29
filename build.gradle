@@ -1,18 +1,10 @@
-buildscript {
-    configurations.maybeCreate("pitest")
-    dependencies {
-        classpath 'info.solidsoft.gradle.pitest:gradle-pitest-plugin:1.4.6'
-        pitest 'org.pitest:pitest-junit5-plugin:0.12'
-    }
-}
-
 plugins {
     id 'org.springframework.boot' version '2.2.6.RELEASE'
     id 'java'
     id "jacoco"
+    id 'info.solidsoft.pitest' version '1.5.0'
 }
 
-apply plugin: "info.solidsoft.pitest"
 apply plugin: 'io.spring.dependency-management'
 
 group 'com.github.mikesafonov'
@@ -92,7 +84,7 @@ jacocoTestReport {
 }
 
 pitest {
-    testPlugin = "junit5"
+    junit5PluginVersion = '0.12'
     targetClasses = ['com.github.mikesafonov.prometheus.telegram.dto.*', 'com.github.mikesafonov.prometheus.telegram.service.*']
     excludedClasses = ['com.github.mikesafonov.prometheus.telegram.config.*', 'com.github.mikesafonov.prometheus.telegram.controllers.*']
     threads = 4
