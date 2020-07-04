@@ -2,3 +2,6 @@ prometheus-telegram-alert:
   build: .
   volumes:
     - ./config:/app/config
+  ports:
+    - "8080:8080"
+    
